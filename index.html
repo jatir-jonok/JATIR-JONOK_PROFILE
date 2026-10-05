@@ -1032,6 +1032,178 @@ body:before{background:
   }
 }
 
+
+/* =========================================================
+   FINAL PHONE ALIGNMENT FIX
+   Keeps desktop untouched and prevents mobile image drift/
+   overlap, especially the M3 + M5 fragment stickers.
+   ========================================================= */
+@media (max-width:700px){
+
+  /* Hard-stop horizontal drift from transforms/viewport sizing */
+  html, body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  main, section, .image-procession, .procession-sticky,
+  .procession-track, .gallery, .sticker-field{
+    max-width:100%;
+    box-sizing:border-box;
+  }
+
+  /* ---------- Image procession: keep every card inside phone ---------- */
+  .procession-track{
+    width:100%;
+    max-width:390px;
+    margin:0 auto;
+    position:relative;
+    overflow:visible;
+  }
+
+  .procession-card{
+    box-sizing:border-box;
+    max-width:calc(100vw - 30px);
+  }
+
+  /* Use smaller horizontal offsets on phones so side images don't
+     get pushed toward/right outside the viewport. */
+  .procession-card:nth-child(1){--x:-24vw;--y:-11vh}
+  .procession-card:nth-child(2){--x:0;--y:1vh}
+  .procession-card:nth-child(3){--x:24vw;--y:-11vh}
+  .procession-card:nth-child(4){--x:-22vw;--y:17vh}
+  .procession-card:nth-child(5){--x:22vw;--y:17vh}
+  .procession-card:nth-child(6){--x:-8vw;--y:-19vh}
+  .procession-card:nth-child(7){--x:8vw;--y:20vh}
+
+  .procession-card.feature{
+    width:clamp(150px,44vw,178px);
+  }
+
+  /* ---------- Fragment gallery ---------- */
+  .gallery{
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  .gallery > *{
+    min-width:0;
+    width:100%;
+  }
+
+  .frame{
+    max-width:100%;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .frame img,
+  .frame video{
+    display:block;
+    max-width:100%;
+  }
+
+  /* ---------- M1/M4/M5/M3 sticker wall ---------- */
+  .sticker-field{
+    position:relative;
+    width:100%;
+    max-width:360px;
+    height:410px;
+    margin:32px auto 0;
+    overflow:hidden;
+  }
+
+  .sticker{
+    width:92px;
+    max-width:92px;
+    padding:7px;
+    box-sizing:border-box;
+    z-index:1;
+  }
+
+  .sticker img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:1 / 1;
+    object-fit:cover;
+  }
+
+  /* Four independent zones: no shared space between M3 and M5. */
+  .sticker-field .s1{
+    left:2%;
+    top:6%;
+    right:auto;
+    bottom:auto;
+    z-index:1;
+  }
+
+  .sticker-field .s2{
+    left:auto;
+    right:2%;
+    top:4%;
+    bottom:auto;
+    z-index:1;
+  }
+
+  .sticker-field .s3{
+    left:4%;
+    right:auto;
+    top:auto;
+    bottom:4%;
+    z-index:2;
+  }
+
+  .sticker-field .s4{
+    left:auto;
+    right:4%;
+    top:auto;
+    bottom:7%;
+    z-index:3;
+  }
+
+  /* Extra-small screens need even more separation. */
+  .sticker-field .s3{transform:rotate(4deg)}
+  .sticker-field .s4{transform:rotate(-4deg)}
+
+  /* Prevent reveal transforms from changing the final sticker positions. */
+  .sticker-field .sticker.reveal.visible{
+    opacity:1;
+  }
+
+  /* ---------- Contact media ---------- */
+  #contact .frame{
+    width:100%;
+    max-width:100%;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
+
+@media(max-width:380px){
+  .procession-track{max-width:340px}
+  .procession-card{max-width:calc(100vw - 24px)}
+  .procession-card.feature{width:142px}
+
+  .sticker-field{
+    max-width:330px;
+    height:380px;
+  }
+
+  .sticker{
+    width:82px;
+    max-width:82px;
+  }
+
+  .sticker-field .s1{left:1%;top:5%}
+  .sticker-field .s2{right:1%;top:3%}
+  .sticker-field .s3{left:2%;bottom:3%}
+  .sticker-field .s4{right:2%;bottom:6%}
+}
+
 </style>
 </head>
 
