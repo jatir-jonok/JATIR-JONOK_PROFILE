@@ -1204,6 +1204,194 @@ body:before{background:
   .sticker-field .s4{right:2%;bottom:6%}
 }
 
+
+
+/* =========================================================
+   SOUND OF THE ROOM · P2 RECORD
+   ========================================================= */
+.sound-room{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:22px 0 0;
+}
+.sound-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  padding:0 0 18px;
+  border-bottom:1px solid rgba(201,157,79,.16);
+}
+.sound-head span{
+  font-family:Cinzel;
+  font-size:8px;
+  letter-spacing:.42em;
+  color:#8e7a5a;
+  white-space:nowrap;
+}
+.sound-head h2{
+  margin:0;
+  font-family:"IM Fell English";
+  font-size:clamp(45px,5.5vw,76px);
+  line-height:.82;
+  letter-spacing:-.035em;
+  color:#e9e3d4;
+}
+.sound-head h2 i{
+  color:#77706d;
+  font-weight:400;
+}
+.sound-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:28px;
+}
+.sound-player,
+.sound-note{
+  min-height:310px;
+  border:1px solid rgba(201,157,79,.22);
+  border-radius:28px;
+  background:linear-gradient(145deg,rgba(30,17,8,.78),rgba(10,7,5,.88));
+  box-shadow:0 25px 70px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.025);
+}
+.sound-player{
+  display:flex;
+  align-items:center;
+  gap:38px;
+  padding:34px 42px;
+}
+.sound-disk{
+  width:190px;
+  height:190px;
+  flex:0 0 190px;
+  border-radius:50%;
+  padding:8px;
+  background:repeating-radial-gradient(circle at center,#171513 0 3px,#090807 4px 7px,#201e1b 8px 10px),#090807;
+  border:1px solid rgba(228,193,122,.20);
+  box-shadow:0 0 0 7px rgba(0,0,0,.35),0 22px 50px rgba(0,0,0,.55);
+}
+.sound-disk-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:50%;
+  border:1px solid rgba(228,193,122,.22);
+}
+.sound-disk-inner:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 35%,rgba(0,0,0,.32) 72%);
+  pointer-events:none;
+}
+.sound-disk img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  filter:grayscale(1) contrast(1.12) brightness(.9);
+}
+.sound-disk-hole{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:18px;
+  height:18px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#d9d0bd;
+  border:5px solid #171310;
+  box-shadow:0 0 0 2px rgba(255,255,255,.18);
+  z-index:2;
+}
+.sound-disk.playing{animation:soundSpin 7s linear infinite}
+@keyframes soundSpin{to{transform:rotate(360deg)}}
+.sound-info{min-width:0}
+.sound-kicker{
+  font-family:Cinzel;
+  font-size:7px;
+  letter-spacing:.45em;
+  color:#8f7c60;
+  margin-bottom:16px;
+}
+.sound-info h3{
+  margin:0;
+  font-family:"IM Fell English";
+  font-size:clamp(31px,3.4vw,49px);
+  line-height:.95;
+  font-weight:400;
+  color:#e9e3d4;
+}
+.sound-info p{
+  margin:15px 0 23px;
+  max-width:410px;
+  color:#8d8b86;
+  font-size:14px;
+  line-height:1.5;
+}
+.sound-controls{display:flex;align-items:center;gap:15px}
+.sound-play{
+  width:46px;
+  height:46px;
+  border:1px solid rgba(225,210,182,.6);
+  border-radius:50%;
+  background:#e9e6df;
+  color:#17130f;
+  display:grid;
+  place-items:center;
+  cursor:none;
+  font-family:Cinzel;
+  font-size:11px;
+  transition:.3s var(--ease);
+}
+.sound-play:hover{transform:scale(1.08);background:#fff}
+.sound-controls span{
+  font-family:Cinzel;
+  font-size:7px;
+  letter-spacing:.35em;
+  color:#817968;
+}
+/* Both sound cards use the same record-player treatment. */
+.sound-player.second{
+  position:relative;
+}
+
+/* The dedicated song section replaces the old floating player visually. */
+.music{display:none}
+
+@media(max-width:700px){
+  .sound-room{padding:10px 0 0}
+  .sound-head{align-items:flex-end;padding-bottom:14px}
+  .sound-head span{font-size:6px;letter-spacing:.25em}
+  .sound-head h2{font-size:clamp(37px,11vw,52px)}
+  .sound-grid{grid-template-columns:1fr;gap:12px;margin-top:16px}
+  .sound-player{min-height:0;border-radius:22px}
+  .sound-player{padding:25px 18px;gap:20px}
+  .sound-disk{
+    width:112px;height:112px;flex-basis:112px;padding:5px;
+    box-shadow:0 0 0 5px rgba(0,0,0,.35),0 16px 35px rgba(0,0,0,.5);
+  }
+  .sound-disk-hole{width:13px;height:13px;border-width:4px}
+  .sound-kicker{font-size:5px;letter-spacing:.3em;margin-bottom:9px}
+  .sound-info h3{font-size:clamp(25px,7.8vw,34px);line-height:.98}
+  .sound-info p{margin:10px 0 15px;font-size:12px;line-height:1.35}
+  .sound-play{width:38px;height:38px;font-size:9px}
+  .sound-controls{gap:11px}
+  .sound-controls span{font-size:5px;letter-spacing:.27em}
+  /* Tighten the section above and below the song room on phones. */
+  #world + section{padding-top:28px;padding-bottom:28px}
+}
+@media(max-width:430px){
+  .sound-grid{grid-template-columns:1fr}
+  .sound-player{gap:15px;padding:21px 14px}
+  .sound-disk{width:96px;height:96px;flex-basis:96px}
+  .sound-info h3{font-size:25px}
+  .sound-info p{font-size:11px}
+}
 </style>
 </head>
 
@@ -1289,10 +1477,53 @@ body:before{background:
       <div>Or perhaps I only pretend to. Hahahahaa...</div>
     </div>
     <div class="rule"></div>
-    <div class="intro-box">
-      Every room here is half truth, half theatre.<br>
-      If you think you understood the Fool, you probably entered the wrong room.
-    </div>
+
+    <section class="sound-room reveal" id="sound-room" aria-label="Sound of the room">
+      <div class="sound-head">
+        <span>ONE SONG · ONE ROOM</span>
+        <h2>sound <i>of the room</i></h2>
+      </div>
+
+      <div class="sound-grid">
+        <div class="sound-player">
+          <div class="sound-disk" id="soundDisk" aria-hidden="true">
+            <div class="sound-disk-inner">
+              <img src="p2.png" alt="P2">
+              <span class="sound-disk-hole"></span>
+            </div>
+          </div>
+
+          <div class="sound-info">
+            <div class="sound-kicker">NOW PLAYING</div>
+            <h3>A song for quiet nights</h3>
+            <p>Lower the lights. Breathe slowly. Let the room disappear for a minute.</p>
+            <div class="sound-controls">
+              <button class="sound-play" id="soundPlay" aria-label="Play song">▶</button>
+              <span id="soundStatus">READY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sound-player second">
+          <div class="sound-disk" id="soundDisk2" aria-hidden="true">
+            <div class="sound-disk-inner">
+              <img src="sp2.png" alt="SP2" onerror="this.onerror=null;this.src='sp2.jpg';">
+              <span class="sound-disk-hole"></span>
+            </div>
+          </div>
+
+          <div class="sound-info">
+            <div class="sound-kicker">SECOND SONG</div>
+            <h3>Feel The Room</h3>
+            <p>Another record from the room. Let S2 play a little louder.</p>
+            <div class="sound-controls">
+              <button class="sound-play" id="soundPlay2" aria-label="Play second song">▶</button>
+              <span id="soundStatus2">READY · S2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </section>
 
@@ -1459,8 +1690,30 @@ const audio=document.getElementById("audio");
 const play=document.getElementById("playBtn");
 const tracks=document.getElementById("tracks");
 const trackName=document.getElementById("trackName");
+const soundPlay=document.getElementById("soundPlay");
+const soundDisk=document.getElementById("soundDisk");
+const soundStatus=document.getElementById("soundStatus");
+const soundPlay2=document.getElementById("soundPlay2");
+const soundDisk2=document.getElementById("soundDisk2");
+const soundStatus2=document.getElementById("soundStatus2");
+const audio2=new Audio("s2.mp3");
+audio2.preload="metadata";
+
+function syncSoundUI(){
+  const playing = !audio.paused && !!audio.src;
+  const playing2 = !audio2.paused && !!audio2.src;
+
+  if(soundPlay) soundPlay.textContent = playing ? "Ⅱ" : "▶";
+  if(soundStatus) soundStatus.textContent = playing ? "PLAYING · S1" : "READY · S1";
+  if(soundDisk) soundDisk.classList.toggle("playing", playing);
+
+  if(soundPlay2) soundPlay2.textContent = playing2 ? "Ⅱ" : "▶";
+  if(soundStatus2) soundStatus2.textContent = playing2 ? "PLAYING · S2" : "READY · S2";
+  if(soundDisk2) soundDisk2.classList.toggle("playing", playing2);
+}
 
 function playTrack(index){
+  audio2.pause();
   currentSongIndex = index;
   const song = songs[currentSongIndex];
   audio.src = song.src;
@@ -1471,8 +1724,9 @@ function playTrack(index){
     else x.classList.remove("active");
   });
   
-  audio.play().catch(()=>{});
+  audio.play().then(()=>syncSoundUI()).catch(()=>syncSoundUI());
   play.textContent = "Ⅱ";
+  syncSoundUI();
 }
 
 function nextSong(){
@@ -1495,9 +1749,50 @@ play.onclick=()=>{
     playTrack(0);
     return;
   }
-  if(audio.paused){audio.play();play.textContent="Ⅱ"}
-  else{audio.pause();play.textContent="▶"}
+  if(audio.paused){
+    audio.play().then(()=>syncSoundUI()).catch(()=>syncSoundUI());
+    play.textContent="Ⅱ";
+  }else{
+    audio.pause();
+    play.textContent="▶";
+  }
+  syncSoundUI();
 };
+
+if(soundPlay){
+  soundPlay.onclick=()=>{
+    if(!audio.src){
+      playTrack(0);
+      return;
+    }
+    if(!audio.paused) audio2.pause();
+    if(audio.paused){
+      audio.play().then(()=>syncSoundUI()).catch(()=>syncSoundUI());
+    }else{
+      audio.pause();
+      syncSoundUI();
+    }
+  };
+}
+
+if(soundPlay2){
+  soundPlay2.onclick=()=>{
+    if(!audio2.paused) audio.pause();
+    if(audio2.paused){
+      audio2.play().then(()=>syncSoundUI()).catch(()=>syncSoundUI());
+    }else{
+      audio2.pause();
+      syncSoundUI();
+    }
+  };
+}
+
+audio.addEventListener("play",syncSoundUI);
+audio.addEventListener("pause",syncSoundUI);
+audio.addEventListener("ended",syncSoundUI);
+audio2.addEventListener("play",syncSoundUI);
+audio2.addEventListener("pause",syncSoundUI);
+audio2.addEventListener("ended",syncSoundUI);
 
 enter.onclick=()=>{
   gate.classList.add("hidden");
